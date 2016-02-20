@@ -5,7 +5,7 @@
 import sys
 import ROOT
 
-def makeOverlayPlot( hlist, config, algoConfigs, outdir ):
+def makeOverlayPlot( hlist, config, srcConfigs, outdir ):
 
    ROOT.gStyle.SetOptStat(0)
    c = ROOT.TCanvas( config['HistogramName'], config['HistogramName'], 800, 600 )
@@ -33,14 +33,26 @@ def makeOverlayPlot( hlist, config, algoConfigs, outdir ):
    l.SetFillStyle(0)
 
    Ymax = 0.
-   # Determine the Ymaximum
-   for algo in hlist.keys():
-      h = hlist[algo]
+   for src in hlist.keys():
+      h = hlist[src]
+      srcConfig = srcConfigs[src]
+      # Set the source specific config
+      h.SetLineWidth( 3 )
+      if 'LineStyle' in srcConfig.keys():
+         h.SetLineStyle( srcConfig['LineStyle'] )
+      if 'Color' in srcConfig.keys():
+         h.SetLineColor( srcConfig['Color'] )
+      if 'Scale' in srcConfig.keys():
+         h.Scale( srcConfig['Scale'] )
+      if 'LegendName' in srcConfig.keys():
+         l.AddEntry( h, srcConfig['LegendName'] )
+      # Determine the Ymaximum
       if h.GetMaximum() > Ymax:
          Ymax = h.GetMaximum()
 
-   for algo in hlist.keys():
-      h = hlist[algo]
+   # Set the variable specific config
+   for src in hlist.keys():
+      h = hlist[src]
       h.SetTitle( config['Title'] )
       if 'XTitleSize' in config.keys():
          h.GetXaxis().SetTitleSize( config['XTitleSize'] )
@@ -63,16 +75,10 @@ def makeOverlayPlot( hlist, config, algoConfigs, outdir ):
       if 'LogY' in config.keys() and config['LogY']:
          c.SetLogy()
 
-      algoConfig = algoConfigs[algo]
-      h.SetLineWidth( 3 )
-      h.SetLineStyle( algoConfig['linestyle'] )
-      h.SetLineColor( algoConfig['color'] )
-
       if 'DrawOpt' not in config.keys():
          config['DrawOpt'] = "same"
 
       h.Draw( config['DrawOpt'] )
-      l.AddEntry( h, algoConfig['name'] )
 
    if 'DrawOpt' not in config.keys() or config['DrawOpt'] == "same" or config['DrawOpt'] == "SAME":
       l.Draw()
@@ -84,7 +90,7 @@ def makeOverlayPlot( hlist, config, algoConfigs, outdir ):
 
 # makeOverlayPlot()
 
-def make2DPlot( hlist, config, algoConfigs, outdir ):
+def make2DPlot( hlist, config, srcConfigs, outdir ):
 
    ROOT.gStyle.SetOptStat(0)
    c = ROOT.TCanvas( config['HistogramName'], config['HistogramName'], 800, 600 )
@@ -93,8 +99,8 @@ def make2DPlot( hlist, config, algoConfigs, outdir ):
    c.SetRightMargin(0.05)
    c.SetFrameLineWidth(2)
 
-   for algo in hlist.keys():
-      h = hlist[algo]
+   for src in hlist.keys():
+      h = hlist[src]
       h.SetTitle( config['Title'] )
       if 'XTitleSize' in config.keys():
          h.GetXaxis().SetTitleSize( config['XTitleSize'] )
@@ -115,7 +121,8 @@ def make2DPlot( hlist, config, algoConfigs, outdir ):
          h.GetYaxis().SetRangeUser( config['Ymin'], config['Ymax'] )
 
       h.Draw( config['DrawOpt'] )
-      PlotName = "%s/%s_%s" %( outdir, algo, config['PlotName'] )
+      srcName = srcConfigs[src]['LegendName'].replace(' ','')
+      PlotName = "%s/%s_%s" %( outdir, srcName, config['PlotName'] )
       c.SaveAs( PlotName )
       PlotName = PlotName.split('.')[0]
       PlotName = '%s.png' % PlotName

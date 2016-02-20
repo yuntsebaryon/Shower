@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # Author:  Yun-Tse Tsai
 # Date:    2015/2/4
+# Update:  2016/2/19
 #
 import sys
 
@@ -17,6 +18,8 @@ def getPlotConfig( cfgName ):
    f = open( cfgName, 'r' )
 
    for line in f:
+      if line.strip()[:1] == '#':
+         continue
       key, value = line.split(':')
       key = key.strip()
       value = value.strip()
@@ -48,13 +51,99 @@ def getPlotConfig( cfgName ):
    return config
 # getPlotConfig()
 
-def getFileList( listName )
+def getFileList( listName ):
    print 'Reading in file list: %s' % listName
    f = open( listName, 'r' )
-   flist = {}
+   fList = {}
 
    for line in f:
-      fconfig = {}
-      key, value = line.split(':')
+      if line.strip()[:1] == '#':
+         continue
+      try:
+         key, value = line.split(':')
+         key = key.strip()
+         value = value.strip()
+      except:
+         continue
 
+      params = key.split('.')
+      i = int(params[1])
+      param = params[2]
+      d = {}
+      if i in fList.keys():
+         d = fList[i]
+      d[param] = value
+      fList[i] = d
+
+   nSources = len( fList )
+   # print 'nSources: %d' % nSources
+   # print fList
+
+   for i in fList:
+      d = fList[i]
+      if not 'File' in d.keys():
+         raise KeyError( 'No file name specified in source %d!' % i )
+      if 'Color' in d.keys():
+         try: d['Color'] = int(d['Color'])
+         except TypeError: pass
+      if 'Scale' in d.keys():
+         try: d['Scale'] = float(d['Scale'])
+         except TypeError: print >> sys.stderr, 'Scale of source %d must be a float!' % i
+      if 'LineStyle' in d.keys():
+         try: d['LineStyle'] = int(d['LineStyle'])
+         except TypeError: print >> sys.stderr, 'LineStyle of source %d must be an integer!' % i
+
+   return nSources, fList
 # getFileList()
+
+def getSelection( selName ):
+   print 'Reading in the selection criteria from %s' % selName
+   f = open( selName, 'r' )
+   selection = {}
+
+   for line in f:
+      if line.strip()[:1] == '#':
+         continue
+      try:
+         key, value = line.split(':')
+         key = key.strip()
+         value = value.strip()
+      except:
+         continue  
+
+      try: value = float(value)
+      except TypeError: print sys.stderr >> 'Cannot parse the selection criterion %s: %s!' %( key, value )
+      selection[key] = value
+
+   return selection
+# getSelection()
+
+def getHistoNames( histoList ):
+   print 'Reading the list of histograms from %s' % histoList
+   f = open( histoList, 'r' )
+   histos = {}
+
+   for line in f:
+      if line.strip()[:1] == '#':
+         continue
+      try:
+         key, value = line.split(':')
+         key = key.strip()
+         value = value.strip()
+      except:
+         continue
+
+      if key == 'Tree':
+         tree = value
+      else:
+         histos[key] = value
+
+   return tree, histos
+# getHistoNames()
+
+if __name__ == "__main__":
+
+   listName = sys.argv[1]
+   print listName
+   nSources, fList = getFileList( listName )
+# if __name__ == "__main__"
