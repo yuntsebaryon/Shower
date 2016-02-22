@@ -111,8 +111,12 @@ def getSelection( selName ):
       except:
          continue  
 
-      try: value = float(value)
-      except TypeError: print sys.stderr >> 'Cannot parse the selection criterion %s: %s!' %( key, value )
+      if ( key.find('NRecoShowers') > 0 ) or ( key.find('NMCShowers') > 0 ):
+         try: value = int(value)
+         except TypeError: print sys.stderr >> 'Cannot parse the selection criterion %s: %s!' %( key, value )
+      else:
+         try: value = float(value)
+         except TypeError: print sys.stderr >> 'Cannot parse the selection criterion %s: %s!' %( key, value )
       selection[key] = value
 
    return selection
