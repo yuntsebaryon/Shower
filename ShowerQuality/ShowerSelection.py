@@ -103,12 +103,34 @@ def selection( tree, criteria, hList ):
          continue
       if ( 'ClusterEffQualY' in criteria.keys() ) and ( i.cluster_eff_Y <= 0. ):
          continue
+      if ( 'NRecoShowers' in criteria.keys() ) and ( i.n_recoshowers != criteria['NRecoShowers'] ):
+         continue
+      if ( 'RecoCosThetaMax' in criteria.keys() ) and ( i.RecoCosTheta > criteria['RecoCosThetaMax'] ):
+         continue
 
       # Calculate the variables of interest
+      # Event tree
       if 'hNRecoShowers' in hList.keys():
          hList['hNRecoShowers'].Fill( i.n_recoshowers )
       if 'hNMCShowers' in hList.keys():
          hList['hNMCShowers'].Fill( i.n_mcshowers )
+      if 'hPerfectRecoE1' in hList.keys():
+         hList['hPerfectRecoE1'].Fill( i.PerfectRecoE1 )
+      if 'hPerfectRecoE2' in hList.keys():
+         hList['hPerfectRecoE2'].Fill( i.PerfectRecoE2 )
+      if 'hPerfectRecoCosTheta' in hList.keys():
+         hList['hPerfectRecoCosTheta'].Fill( i.PerfectRecoCosTheta )
+      if 'hPerfectRecoPi0Mass' in hList.keys():
+         hList['hPerfectRecoPi0Mass'].Fill( i.PerfectRecoPi0Mass )
+      if 'hRecoE1' in hList.keys():
+         hList['hRecoE1'].Fill( i.RecoE1 )
+      if 'hRecoE2' in hList.keys():
+         hList['hRecoE2'].Fill( i.RecoE2 )
+      if 'hRecoCosTheta' in hList.keys():
+         hList['hRecoCosTheta'].Fill( i.RecoCosTheta )
+      if 'hRecoPi0Mass' in hList.keys():
+         hList['hRecoPi0Mass'].Fill( i.RecoPi0Mass )
+      # Shower tree
       if 'hEnergyResU' in hList.keys():
          hList['hEnergyResU'].Fill( ( i.mc_energy - i.reco_energy_U )/i.mc_energy )
       if 'hEnergyResV' in hList.keys():
@@ -175,7 +197,7 @@ if __name__ == "__main__":
    print "Histogram list    : %s" % options.histoList
    print "Output directory  : %s" % options.outDir
    if options.selectionList:
-      print "Selection criteria: %s" % options.selctionList
+      print "Selection criteria: %s" % options.selectionList
    else:
       print "No selection criterion is applied."
 
@@ -195,7 +217,7 @@ if __name__ == "__main__":
    # Read in the selection criteria
    Selection = {}
    if options.selectionList:
-      Selection = ConfigUtils.getSelection( options.selctionList )
+      Selection = ConfigUtils.getSelection( options.selectionList )
 
    # Create a text file in the output directory to record the selection criteria
    writeSelection( options.outDir, Selection )
