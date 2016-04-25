@@ -177,6 +177,10 @@ def selection( tree, criteria, hList ):
          hList['hClusterEffY'].Fill( i.cluster_eff_Y )
       if 'hLength' in hList.keys():
          hList['hLength'].Fill( i.reco_length )
+      if 'hLongWidth' in hList.keys():
+         hList['hLongWidth'].Fill( i.reco_width1 )
+      if 'hShortWidth' in hList.keys():
+         hList['hShortWidth'].Fill( i.reco_width2 )
       if 'hEnergyCorrU' in hList.keys():
          hList['hEnergyCorrU'].Fill( i.mc_energy, i.reco_energy_U )
       if 'hEnergyCorrV' in hList.keys():
