@@ -22,6 +22,8 @@ hClusterEffU: /Users/yuntse/Work/uboone/Reco/Shower/Configs/ClusterEffU.config
 hClusterEffV: /Users/yuntse/Work/uboone/Reco/Shower/Configs/ClusterEffV.config
 hClusterEffY: /Users/yuntse/Work/uboone/Reco/Shower/Configs/ClusterEffY.config
 hLength: /Users/yuntse/Work/uboone/Reco/Shower/Configs/Length.config
+hLongWidth: /Users/yuntse/Work/uboone/Reco/Shower/Configs/LongWidth.config
+hShortWidth: /Users/yuntse/Work/uboone/Reco/Shower/Configs/ShortWidth.config
 hEnergyCorrU: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyCorrU.config
 hEnergyCorrV: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyCorrV.config
 hEnergyCorrY: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyCorrY.config
