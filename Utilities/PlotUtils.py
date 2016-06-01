@@ -84,9 +84,9 @@ def makeOverlayPlot( hlist, config, srcConfigs, outdir ):
       l.Draw()
       PlotName = "%s/%s" %( outdir, config['PlotName'] )
       c.SaveAs( PlotName )
-      PlotName = PlotName.split('.')[0]
-      PlotName = '%s.png' % PlotName
-      c.SaveAs( PlotName )
+      # PlotName = PlotName.split('.')[0]
+      # PlotName = '%s.png' % PlotName
+      # c.SaveAs( PlotName )
 
 # makeOverlayPlot()
 
@@ -96,7 +96,11 @@ def make2DPlot( hlist, config, srcConfigs, outdir ):
    c = ROOT.TCanvas( config['HistogramName'], config['HistogramName'], 800, 600 )
    c.SetBottomMargin(0.15)
    c.SetLeftMargin(0.15)
-   c.SetRightMargin(0.05)
+   if 'CanvasRightMargin' in config.keys():
+      crm = float(config['CanvasRightMargin'])
+   else:
+      crm = 0.05
+   c.SetRightMargin( crm )
    c.SetFrameLineWidth(2)
 
    for src in hlist.keys():
@@ -124,8 +128,8 @@ def make2DPlot( hlist, config, srcConfigs, outdir ):
       srcName = srcConfigs[src]['LegendName'].replace(' ','')
       PlotName = "%s/%s_%s" %( outdir, srcName, config['PlotName'] )
       c.SaveAs( PlotName )
-      PlotName = PlotName.split('.')[0]
-      PlotName = '%s.png' % PlotName
-      c.SaveAs( PlotName )
+      # PlotName = PlotName.split('.')[0]
+      # PlotName = '%s.png' % PlotName
+      # c.SaveAs( PlotName )
 
 # make2DPlot()

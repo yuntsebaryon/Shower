@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # Author:  Yun-Tse Tsai
 # Date:    2015/2/2
-# Update:  2016/2/19
+# Update:  2016/4/27
 #
 import sys
 import os
@@ -9,6 +9,7 @@ import ROOT
 import math
 from optparse import OptionParser
 import AccessROOTUtils
+import SelectionUtils
 import PlotUtils
 import ConfigUtils
 
@@ -61,6 +62,24 @@ def writeSelection( outdir, criteria ):
 
 # writeSelection()
 
+def writeNEvents( outdir, legend, n ):
+
+   fname = "%s/SELECTION" % outdir
+   ftxt  = open( fname, 'a' )
+   ftxt.write("NEvents( %s ): %d\n" % ( legend, n ) )
+
+# writeNEvents()
+
+def writeRatio( outdir, legend, n, r, p ):
+
+   fname = "%s/SELECTION" % outdir
+   ftxt  = open( fname, 'a' )
+   ftxt.write( 'Sample %s\n' % legend )
+   for i in xrange( 0, len(n) ):
+      ftxt.write("Plane %d: Average deposited energy/Reconstructed energy = %f, peak = %f, over %d events.\n" % ( i, r[i], p[i], n[i] ) )
+
+# writeRatio()
+
 def bookHistograms( srcName, hconfigs ):
 
    hList = {}
@@ -76,121 +95,6 @@ def bookHistograms( srcName, hconfigs ):
    return hList
 
 # def bookHistograms()
-
-def selection( tree, criteria, hList ):
-
-   for i in tree:
-      # Selection
-      if ( 'AngleDiffMax' in criteria.keys() ) and ( i.mc_reco_anglediff > criteria['AngleDiffMax'] ):
-         continue
-      if ( 'StartingPointAccMax' in criteria.keys() ) and ( i.mc_reco_dist > criteria['StartingPointAccMax'] ):
-         continue
-      if ( 'dQdxUMin' in criteria.keys() ) and ( i.reco_dqdx_U < criteria['dQdxUMin'] ):
-         continue
-      if ( 'dQdxUMax' in criteria.keys() ) and ( i.reco_dqdx_U > criteria['dQdxUMax'] ):
-         continue
-      if ( 'dQdxVMin' in criteria.keys() ) and ( i.reco_dqdx_V < criteria['dQdxVMin'] ):
-         continue
-      if ( 'dQdxVMax' in criteria.keys() ) and ( i.reco_dqdx_V > criteria['dQdxVMax'] ):
-         continue
-      if ( 'dQdxYMin' in criteria.keys() ) and ( i.reco_dqdx_Y < criteria['dQdxYMin'] ):
-         continue
-      if ( 'dQdxYMax' in criteria.keys() ) and ( i.reco_dqdx_Y > criteria['dQdxYMax'] ):
-         continue
-      if ( 'ClusterEffQualU' in criteria.keys() ) and ( i.cluster_eff_U <= 0. ):
-         continue
-      if ( 'ClusterEffQualV' in criteria.keys() ) and ( i.cluster_eff_V <= 0. ):
-         continue
-      if ( 'ClusterEffQualY' in criteria.keys() ) and ( i.cluster_eff_Y <= 0. ):
-         continue
-      if ( 'NRecoShowers' in criteria.keys() ) and ( i.n_recoshowers != criteria['NRecoShowers'] ):
-         continue
-      if ( 'RecoCosThetaMax' in criteria.keys() ) and ( i.RecoCosTheta > criteria['RecoCosThetaMax'] ):
-         continue
-
-      # Calculate the variables of interest
-      # Event tree
-      if 'hNRecoShowers' in hList.keys():
-         hList['hNRecoShowers'].Fill( i.n_recoshowers )
-      if 'hNMCShowers' in hList.keys():
-         hList['hNMCShowers'].Fill( i.n_mcshowers )
-      if 'hPerfectRecoE1' in hList.keys():
-         hList['hPerfectRecoE1'].Fill( i.PerfectRecoE1 )
-      if 'hPerfectRecoE2' in hList.keys():
-         hList['hPerfectRecoE2'].Fill( i.PerfectRecoE2 )
-      if 'hPerfectRecoCosTheta' in hList.keys():
-         hList['hPerfectRecoCosTheta'].Fill( i.PerfectRecoCosTheta )
-      if 'hPerfectRecoPi0Mass' in hList.keys():
-         hList['hPerfectRecoPi0Mass'].Fill( i.PerfectRecoPi0Mass )
-      if 'hRecoE1' in hList.keys():
-         hList['hRecoE1'].Fill( i.RecoE1 )
-      if 'hRecoE2' in hList.keys():
-         hList['hRecoE2'].Fill( i.RecoE2 )
-      if 'hRecoCosTheta' in hList.keys():
-         hList['hRecoCosTheta'].Fill( i.RecoCosTheta )
-      if 'hRecoPi0Mass' in hList.keys():
-         hList['hRecoPi0Mass'].Fill( i.RecoPi0Mass )
-      # Shower tree
-      if 'hEnergyResU' in hList.keys():
-         hList['hEnergyResU'].Fill( ( i.mc_energy - i.reco_energy_U )/i.mc_energy )
-      if 'hEnergyResV' in hList.keys():
-         hList['hEnergyResV'].Fill( ( i.mc_energy - i.reco_energy_V )/i.mc_energy )
-      if 'hEnergyResY' in hList.keys():
-         hList['hEnergyResY'].Fill( ( i.mc_energy - i.reco_energy_Y )/i.mc_energy )
-      if 'hEnergyAsymU' in hList.keys():
-         hList['hEnergyAsymU'].Fill( ( i.mc_energy - i.reco_energy_U )/ ( i.mc_energy + i.reco_energy_U ) )
-      if 'hEnergyAsymV' in hList.keys():
-         hList['hEnergyAsymV'].Fill( ( i.mc_energy - i.reco_energy_V )/ ( i.mc_energy + i.reco_energy_V ) )
-      if 'hEnergyAsymY' in hList.keys():
-         hList['hEnergyAsymY'].Fill( ( i.mc_energy - i.reco_energy_Y )/ ( i.mc_energy + i.reco_energy_Y ) )
-      if 'hEnergyDiffU' in hList.keys():
-         hList['hEnergyDiffU'].Fill( ( i.mc_energy - i.reco_energy_U ) )
-      if 'hEnergyDiffV' in hList.keys():
-         hList['hEnergyDiffV'].Fill( ( i.mc_energy - i.reco_energy_V ) )
-      if 'hEnergyDiffY' in hList.keys():
-         hList['hEnergyDiffY'].Fill( ( i.mc_energy - i.reco_energy_Y ) )
-      if 'hStartingPointAcc' in hList.keys():
-         hList['hStartingPointAcc'].Fill( i.mc_reco_dist )
-      if 'hAngleDiff' in hList.keys():
-         hList['hAngleDiff'].Fill( i.mc_reco_anglediff )
-      if 'hdEdxU' in hList.keys():
-         hList['hdEdxU'].Fill( i.reco_dedx_U )
-      if 'hdEdxV' in hList.keys():
-         hList['hdEdxV'].Fill( i.reco_dedx_V )
-      if 'hdEdxY' in hList.keys():
-         hList['hdEdxY'].Fill( i.reco_dedx_Y )
-      if 'hdEdx' in hList.keys():
-         hList['hdEdx'].Fill( i.reco_dedx )
-      if 'hdQdxU' in hList.keys():
-         hList['hdQdxU'].Fill( i.reco_dqdx_U )
-      if 'hdQdxV' in hList.keys():
-         hList['hdQdxV'].Fill( i.reco_dqdx_V )
-      if 'hdQdxY' in hList.keys():
-         hList['hdQdxY'].Fill( i.reco_dqdx_Y )
-      if 'hdQdx' in hList.keys():
-         hList['hdQdx'].Fill( i.reco_dqdx )
-      if 'hClusterEffU' in hList.keys():
-         hList['hClusterEffU'].Fill( i.cluster_eff_U )
-      if 'hClusterEffV' in hList.keys():
-         hList['hClusterEffV'].Fill( i.cluster_eff_V )
-      if 'hClusterEffY' in hList.keys():
-         hList['hClusterEffY'].Fill( i.cluster_eff_Y )
-      if 'hLength' in hList.keys():
-         hList['hLength'].Fill( i.reco_length )
-      if 'hLongWidth' in hList.keys():
-         hList['hLongWidth'].Fill( i.reco_width1 )
-      if 'hShortWidth' in hList.keys():
-         hList['hShortWidth'].Fill( i.reco_width2 )
-      if 'hEnergyCorrU' in hList.keys():
-         hList['hEnergyCorrU'].Fill( i.mc_energy, i.reco_energy_U )
-      if 'hEnergyCorrV' in hList.keys():
-         hList['hEnergyCorrV'].Fill( i.mc_energy, i.reco_energy_V )
-      if 'hEnergyCorrY' in hList.keys():
-         hList['hEnergyCorrY'].Fill( i.mc_energy, i.reco_energy_Y )
-
-   return hList
-
-# def selection()
 
 
 if __name__ == "__main__":
@@ -211,7 +115,7 @@ if __name__ == "__main__":
 
    # Read in the histogram list
    Histos = {}
-   tree, Histos = ConfigUtils.getHistoNames( options.histoList )
+   tree, selectionType, Histos = ConfigUtils.getHistoNames( options.histoList )
 
    # Create the output directory
    createDir()
@@ -238,7 +142,18 @@ if __name__ == "__main__":
       t = AccessROOTUtils.getTree( fname, tree )
       srcName = sList[src]['LegendName'].replace( ' ', '')
       hDict[src] = bookHistograms( srcName, hConfig )
-      hDict[src] = selection( t, Selection, hDict[src] )
+      if selectionType == 'pi0':
+         hDict[src], n = SelectionUtils.pi0Selection( t, Selection, hDict[src] )
+         writeNEvents( options.outDir, sList[src]['LegendName'], n )
+      elif selectionType == 'data_pi0':
+         hDict[src], n = SelectionUtils.dataPi0Selection( t, Selection, hDict[src] )
+         writeNEvents( options.outDir, sList[src]['LegendName'], n )
+      elif selectionType == 'EnergyRatio':
+         hDict[src], ns, rs, ps = SelectionUtils.ECalSelection( t, Selection, hDict[src] )
+         writeRatio( options.outDir, sList[src]['LegendName'], ns, rs, ps )
+      else:
+         hDict[src], n = SelectionUtils.showerSelection( t, Selection, hDict[src] )
+         writeNEvents( options.outDir, sList[src]['LegendName'], n )
 
    for histo in Histos.keys():
       hList = {}

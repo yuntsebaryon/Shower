@@ -139,10 +139,12 @@ def getHistoNames( histoList ):
 
       if key == 'Tree':
          tree = value
+      elif key == 'SelectionType':
+         selectionType = value
       else:
          histos[key] = value
 
-   return tree, histos
+   return tree, selectionType, histos
 # getHistoNames()
 
 if __name__ == "__main__":
