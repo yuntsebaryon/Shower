@@ -86,23 +86,32 @@ def showerSelection( tree, criteria, hList ):
 
       # Shower tree
       if 'EnergyResU' in hList.keys():
-         hList['EnergyResU'].Fill( ( i.mc_energy - i.reco_energy_U )/i.mc_energy )
+         if ( i.mc_energy == 0. ):
+            print 'Event %d has MC energy = 0!' % n
+         else:
+            hList['EnergyResU'].Fill( ( i.mc_energy - i.reco_energy_U * 1000. )/i.mc_energy )
       if 'EnergyResV' in hList.keys():
-         hList['EnergyResV'].Fill( ( i.mc_energy - i.reco_energy_V )/i.mc_energy )
+         if ( i.mc_energy == 0. ):
+            print 'Event %d has MC energy = 0!' % n
+         else:
+            hList['EnergyResV'].Fill( ( i.mc_energy - i.reco_energy_V * 1000. )/i.mc_energy )
       if 'EnergyResY' in hList.keys():
-         hList['EnergyResY'].Fill( ( i.mc_energy - i.reco_energy_Y )/i.mc_energy )
+         if ( i.mc_energy == 0. ):
+            print 'Event %d has MC energy = 0!' % n
+         else:
+            hList['EnergyResY'].Fill( ( i.mc_energy - i.reco_energy_Y * 1000. )/i.mc_energy )
       if 'EnergyAsymU' in hList.keys():
-         hList['EnergyAsymU'].Fill( ( i.mc_energy - i.reco_energy_U )/ ( i.mc_energy + i.reco_energy_U ) )
+         hList['EnergyAsymU'].Fill( ( i.mc_energy - i.reco_energy_U * 1000. )/ ( i.mc_energy + i.reco_energy_U*1000. ) )
       if 'EnergyAsymV' in hList.keys():
-         hList['EnergyAsymV'].Fill( ( i.mc_energy - i.reco_energy_V )/ ( i.mc_energy + i.reco_energy_V ) )
+         hList['EnergyAsymV'].Fill( ( i.mc_energy - i.reco_energy_V * 1000. )/ ( i.mc_energy + i.reco_energy_V*1000. ) )
       if 'EnergyAsymY' in hList.keys():
-         hList['EnergyAsymY'].Fill( ( i.mc_energy - i.reco_energy_Y )/ ( i.mc_energy + i.reco_energy_Y ) )
+         hList['EnergyAsymY'].Fill( ( i.mc_energy - i.reco_energy_Y * 1000. )/ ( i.mc_energy + i.reco_energy_Y*1000. ) )
       if 'EnergyDiffU' in hList.keys():
-         hList['EnergyDiffU'].Fill( ( i.mc_energy - i.reco_energy_U ) )
+         hList['EnergyDiffU'].Fill( ( i.mc_energy - i.reco_energy_U * 1000. ) )
       if 'EnergyDiffV' in hList.keys():
-         hList['EnergyDiffV'].Fill( ( i.mc_energy - i.reco_energy_V ) )
+         hList['EnergyDiffV'].Fill( ( i.mc_energy - i.reco_energy_V * 1000. ) )
       if 'EnergyDiffY' in hList.keys():
-         hList['EnergyDiffY'].Fill( ( i.mc_energy - i.reco_energy_Y ) )
+         hList['EnergyDiffY'].Fill( ( i.mc_energy - i.reco_energy_Y * 1000. ) )
       if 'StartingPointAcc' in hList.keys():
          hList['StartingPointAcc'].Fill( i.mc_reco_dist )
       if 'AngleDiff' in hList.keys():
@@ -141,8 +150,23 @@ def showerSelection( tree, criteria, hList ):
          hList['EnergyCorrV'].Fill( i.mc_energy, i.reco_energy_V )
       if 'EnergyCorrY' in hList.keys():
          hList['EnergyCorrY'].Fill( i.mc_energy, i.reco_energy_Y )
+      if 'EnergyResCorrU' in hList.keys():
+         if ( i.mc_energy == 0. ):
+            print 'Event %d has MC energy = 0!' % n
+         else:
+            hList['EnergyResCorrU'].Fill( i.mc_energy, ( i.mc_energy - i.reco_energy_U*1000. )/i.mc_energy )
+      if 'EnergyResCorrV' in hList.keys():
+         if ( i.mc_energy == 0. ):
+            print 'Event %d has MC energy = 0!' % n
+         else:
+            hList['EnergyResCorrV'].Fill( i.mc_energy, ( i.mc_energy - i.reco_energy_V*1000. )/i.mc_energy )
+      if 'EnergyResCorrU' in hList.keys():
+         if ( i.mc_energy == 0. ):
+            print 'Event %d has MC energy = 0!' % n
+         else:
+            hList['EnergyResCorrY'].Fill( i.mc_energy, ( i.mc_energy - i.reco_energy_Y*1000. )/i.mc_energy )
 
-   print 'Number of reconstructed pi0: %d' % n
+   print 'Number of reconstructed showers: %d' % n
    return hList, n
 
 # def selection() 

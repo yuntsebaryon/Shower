@@ -83,8 +83,14 @@ def getFileList( listName ):
       d = fList[i]
       if not 'File' in d.keys():
          raise KeyError( 'No file name specified in source %d!' % i )
+      if 'FillStyle' in d.keys():
+         try: d['FillStyle'] = int(d['FillStyle'])
+         except TypeError: pass
       if 'Color' in d.keys():
          try: d['Color'] = int(d['Color'])
+         except TypeError: pass
+      if 'FillColor' in d.keys():
+         try: d['FillColor'] = int(d['FillColor'])
          except TypeError: pass
       if 'Scale' in d.keys():
          try: d['Scale'] = float(d['Scale'])

@@ -40,8 +40,12 @@ def makeOverlayPlot( hlist, config, srcConfigs, outdir ):
       h.SetLineWidth( 3 )
       if 'LineStyle' in srcConfig.keys():
          h.SetLineStyle( srcConfig['LineStyle'] )
+      if 'FillStyle' in srcConfig.keys():
+         h.SetFillStyle( srcConfig['FillStyle'] )
       if 'Color' in srcConfig.keys():
          h.SetLineColor( srcConfig['Color'] )
+      if 'FillColor' in srcConfig.keys():
+         h.SetFillColor( srcConfig['FillColor'] )
       if 'Scale' in srcConfig.keys():
          h.Scale( srcConfig['Scale'] )
       if 'LegendName' in srcConfig.keys():
@@ -84,9 +88,9 @@ def makeOverlayPlot( hlist, config, srcConfigs, outdir ):
       l.Draw()
       PlotName = "%s/%s" %( outdir, config['PlotName'] )
       c.SaveAs( PlotName )
-      # PlotName = PlotName.split('.')[0]
-      # PlotName = '%s.png' % PlotName
-      # c.SaveAs( PlotName )
+      PlotName = PlotName.split('.')[0]
+      PlotName = '%s.png' % PlotName
+      c.SaveAs( PlotName )
 
 # makeOverlayPlot()
 
@@ -128,8 +132,8 @@ def make2DPlot( hlist, config, srcConfigs, outdir ):
       srcName = srcConfigs[src]['LegendName'].replace(' ','')
       PlotName = "%s/%s_%s" %( outdir, srcName, config['PlotName'] )
       c.SaveAs( PlotName )
-      # PlotName = PlotName.split('.')[0]
-      # PlotName = '%s.png' % PlotName
-      # c.SaveAs( PlotName )
+      PlotName = PlotName.split('.')[0]
+      PlotName = '%s.png' % PlotName
+      c.SaveAs( PlotName )
 
 # make2DPlot()
