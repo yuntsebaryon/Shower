@@ -1,8 +1,0 @@
-Tree: EventTree
-nHitsU: /Users/yuntse/Work/uboone/Reco/Shower/Configs/NHitsU.config
-nHitsV: /Users/yuntse/Work/uboone/Reco/Shower/Configs/NHitsV.config
-nHitsY: /Users/yuntse/Work/uboone/Reco/Shower/Configs/NHitsY.config
-ChargesU: /Users/yuntse/Work/uboone/Reco/Shower/Configs/ChargesU.config
-ChargesV: /Users/yuntse/Work/uboone/Reco/Shower/Configs/ChargesV.config
-ChargesY: /Users/yuntse/Work/uboone/Reco/Shower/Configs/ChargesY.config
-
