@@ -1,0 +1,9 @@
+Source.1.File: /Users/yuntse/Data/uboone/lar_v05_08_00/showerreco_v4/bnblike_pizero_badwires/Pi0Quality_pandoraNuMerged3D_v13_ana_out.root
+Source.1.LegendName: Merged
+Source.1.Color: 593
+
+Source.2.File: /Users/yuntse/Data/uboone/lar_v05_08_00/showerreco_v4/bnblike_pizero_badwires/Pi0Quality_pandoraNu3D_v13_ana_out.root
+Source.2.LegendName: Shower like
+Source.2.Color: 906
+Source.2.LineStyle: 5
+

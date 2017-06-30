@@ -1,0 +1,17 @@
+Source.1.File: /Users/yuntse/Data/uboone/lar_v06_03_00/showerreco_v4/prod_eminus_0.1-2.0GeV_isotropic_uboone_goodwires/ShowerQuality_singleshowers_gaushit3D_v15_02_ana_out.root
+Source.1.LegendName: Nominal
+Source.1.Color: 417
+Source.1.LineStyle: 5
+
+Source.2.File: /Users/yuntse/Data/uboone/lar_v06_03_00_norecomb/showerreco_v4/prod_eminus_0.1-2.0GeV_isotropic_uboone_goodwires_norecomb/ShowerQuality_singleshowers_gaushit3D_v15_04_ana_out.root
+Source.2.LegendName: No Recomb
+Source.2.Color: 797
+
+Source.3.File: /Users/yuntse/Data/uboone/lar_v06_03_00_norecomb/showerreco_v4/prod_muminus_0.1-2.0GeV_isotropic_uboone_goodwires_special_quiet/TrackQuality_singletracks_gaushit3D_v15_04_ana_out.root
+Source.3.LegendName: Muon
+Source.3.Color: 593
+
+Source.4.File: /Users/yuntse/Data/uboone/lar_v06_03_00_norecomb/showerreco_v4/prod_eminus_0.1-2.0GeV_isotropic_uboone_goodwires_special/ShowerQuality_singleshowers_gaushit3D_v15_04_ana_out.root
+Source.4.LegendName: Electron
+Source.4.Color: 906
+

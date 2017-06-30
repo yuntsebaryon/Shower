@@ -1,0 +1,29 @@
+Source.1.File: /Users/yuntse/Data/uboone/lar_v05_08_00/showerreco_v4/bnblike_eminus_badwires/ShowerQuality_singleshowers_pandoraNu3D_v9_01_ana_out.root
+Source.1.LegendName: MCC7
+Source.1.Color: 593
+Source.1.FillStyle: 3004
+Source.1.FillColor: 591
+# Source.1.LineStyle: 5
+
+Source.2.File: /Users/yuntse/Data/uboone/lar_v05_08_00_pandora/showerreco_v4/bnblike_eminus_badwires/ShowerQuality_singleshowers_pandoraNu3D_v16_08_ana_out.root
+Source.2.LegendName: Pandora v1
+Source.2.Color: 906
+
+Source.3.File: /Users/yuntse/Data/uboone/lar_v05_08_00_pandora_v2/showerreco_v4/bnblike_eminus_badwires/ShowerQuality_singleshowers_pandoraNu3D_v16_08_ana_out.root
+Source.3.LegendName: Pandora v2
+Source.3.Color: 432
+# Source.3.LineStyle: 5
+
+Source.4.File: /Users/yuntse/Data/uboone/lar_v05_08_00_pandora_v3/showerreco_v4/bnblike_eminus_badwires/ShowerQuality_singleshowers_pandoraNu3D_v16_08_ana_out.root
+Source.4.LegendName: Pandora v3
+Source.4.Color: 417
+
+Source.5.File: /Users/yuntse/Data/uboone/lar_v05_08_00_pandora_v4/showerreco_v4/bnblike_eminus_badwires/ShowerQuality_singleshowers_pandoraNu3D_v16_08_ana_out.root
+Source.5.LegendName: Pandora v4
+Source.5.Color: 797
+Source.5.LineStyle: 5
+
+Source.6.File: /Users/yuntse/Data/uboone/lar_v05_08_00_pandora_v5/showerreco_v4/bnblike_eminus_badwires/ShowerQuality_singleshowers_pandoraNu3D_v16_08_ana_out.root
+Source.6.LegendName: Pandora v5
+Source.6.Color: 920
+# Source.6.LineStyle: 5

@@ -1,0 +1,11 @@
+Source.1.File: /Users/yuntse/Data/uboone/pre_mcc7.0/hits/pre_mcc7_prod_bnblike_eminus_uboone/HitsAna_pandoraCosmicKHitRemoval.root
+Source.1.LegendName: pre MCC 7
+Source.1.Color: 593
+
+Source.2.File: /Users/yuntse/Data/uboone/lar_v05_04_00/hits/bnblike_eminus_goodwires/HitsAna_pandoraCosmicKHitRemoval.root
+Source.2.LegendName: v05_04_00
+Source.2.Color: 906
+
+Source.3.File: /Users/yuntse/Data/uboone/lar_v05_04_00_sf/hits/bnblike_eminus_goodwires/HitsAna_pandoraCosmicKHitRemoval.root
+Source.3.LegendName: Scaled Filter
+Source.3.Color: 797

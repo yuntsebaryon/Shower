@@ -1,0 +1,5 @@
+Tree: fEventTree
+SelectionType: shower
+NRecoShowers: /Users/yuntse/Work/uboone/Reco/Shower/Configs/NRecoShowers.config
+NMCShowers: /Users/yuntse/Work/uboone/Reco/Shower/Configs/NMCShowers.config
+

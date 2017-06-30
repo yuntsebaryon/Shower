@@ -1,0 +1,33 @@
+Tree: fShowerTree
+SelectionType: shower
+EnergyResU: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyResU.config
+EnergyResV: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyResV.config
+EnergyResY: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyResY.config
+EnergyAsymU: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyAsymU.config
+EnergyAsymV: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyAsymV.config
+EnergyAsymY: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyAsymY.config
+EnergyDiffU: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyDiffU.config
+EnergyDiffV: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyDiffV.config
+EnergyDiffY: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyDiffY.config
+StartingPointAcc: /Users/yuntse/Work/uboone/Reco/Shower/Configs/StartingPointAcc.config
+AngleDiff: /Users/yuntse/Work/uboone/Reco/Shower/Configs/AngleDiff.config
+# dEdxU: /Users/yuntse/Work/uboone/Reco/Shower/Configs/dEdxU.config
+# dEdxV: /Users/yuntse/Work/uboone/Reco/Shower/Configs/dEdxV.config
+# dEdxY: /Users/yuntse/Work/uboone/Reco/Shower/Configs/dEdxY.config
+# dEdx : /Users/yuntse/Work/uboone/Reco/Shower/Configs/dEdx.config
+# dQdxU: /Users/yuntse/Work/uboone/Reco/Shower/Configs/dQdxU.config
+# dQdxV: /Users/yuntse/Work/uboone/Reco/Shower/Configs/dQdxV.config
+# dQdxY: /Users/yuntse/Work/uboone/Reco/Shower/Configs/dQdxY.config
+# dQdx : /Users/yuntse/Work/uboone/Reco/Shower/Configs/dQdx.config
+ClusterEffU: /Users/yuntse/Work/uboone/Reco/Shower/Configs/ClusterEffU.config
+ClusterEffV: /Users/yuntse/Work/uboone/Reco/Shower/Configs/ClusterEffV.config
+ClusterEffY: /Users/yuntse/Work/uboone/Reco/Shower/Configs/ClusterEffY.config
+Length: /Users/yuntse/Work/uboone/Reco/Shower/Configs/Length.config
+# LongWidth: /Users/yuntse/Work/uboone/Reco/Shower/Configs/LongWidth.config
+# ShortWidth: /Users/yuntse/Work/uboone/Reco/Shower/Configs/ShortWidth.config
+# EnergyCorrU: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyCorrU.config
+# EnergyCorrV: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyCorrV.config
+# EnergyCorrY: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyCorrY.config
+# EnergyResCorrU: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyResCorrU.config
+# EnergyResCorrV: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyResCorrV.config
+# EnergyResCorrY: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyResCorrY.config

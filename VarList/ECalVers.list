@@ -1,0 +1,5 @@
+Tree: fShowerTree_singleshowers
+SelectionType: EnergyRatio
+EnergyRatioU: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyRatioU.config
+EnergyRatioV: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyRatioV.config
+EnergyRatioY: /Users/yuntse/Work/uboone/Reco/Shower/Configs/EnergyRatioY.config

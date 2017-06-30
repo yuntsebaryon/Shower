@@ -1,0 +1,10 @@
+# Source.1.File: /Users/yuntse/Data/uboone/lar_v05_09_00_v2/showerreco_v4/golden_pi0_DATA_75cm_3show3trk_NOdetach/Pi0Quality_filtered_v13_ana.root
+Source.1.File: /Users/yuntse/Data/uboone/data/GoldenPi0/HandScannedPi0/selection2/showerreco_v4/SimplePi0Quality_v17_00_ana.root
+Source.1.LegendName: data
+Source.1.Color: 906
+
+# Source.2.File: /Users/yuntse/Data/uboone/lar_v05_08_00/showerreco_v4/bnblike_pizero_badwires/Pi0Quality_pandoraNu3D_v11_01_ana_out.root
+# Source.2.LegendName: Shower like
+# Source.2.Color: 593
+# Source.2.LineStyle: 5
+
